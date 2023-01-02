@@ -17,6 +17,10 @@ var height;
 
 var blurValue;
 
+var sharpenValue;
+
+var rotateAngle;
+
 const bodyParser = require('body-parser');
 
 const fs = require('fs');
@@ -81,13 +85,16 @@ app.post('/processed_images',upload.single('file'),(req,res) => {
      format = req.body.format;
      width = parseInt(req.body.width);
      height = parseInt(req.body.height);
-     blurValue =parseInt(req.body.value)
+     blurValue =parseInt(req.body.Bvalue)
+     sharpenValue =parseInt(req.body.Svalue)
+     rotateAngle =parseInt(req.body.angle)
+
      
      
 
 
        if (req.file){
-          console.log(req.file.path);
+          // console.log(req.file.path);
 
 
           if(isNaN(width) || isNaN(height)){
@@ -122,6 +129,8 @@ function processImage(width,height,blurValue,req,res){
       sharp(req.file.path)
         .resize(width, height)
         .blur(blurValue)
+        .sharpen(sharpenValue)
+        .rotate(rotateAngle)
         .grayscale()
         .toFile(outputFilePath, (err, info) => {
           if (err) throw err;
