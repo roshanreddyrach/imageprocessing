@@ -15,6 +15,8 @@ var outputFilePath;
 
 var height;
 
+var blurValue;
+
 const bodyParser = require('body-parser');
 
 const fs = require('fs');
@@ -79,10 +81,14 @@ app.post('/processed_images',upload.single('file'),(req,res) => {
      format = req.body.format;
      width = parseInt(req.body.width);
      height = parseInt(req.body.height);
+     blurValue =parseInt(req.body.value)
+     
+     
 
 
        if (req.file){
           console.log(req.file.path);
+
 
           if(isNaN(width) || isNaN(height)){
 
@@ -93,12 +99,12 @@ app.post('/processed_images',upload.single('file'),(req,res) => {
             width = parseInt(dimensions.width);
             height = parseInt(dimensions.height);
 
-            processImage(width,height,req,res);
+            processImage(width,height,blurValue,req,res);
 
           }
           else{
                    
-            processImage(width,height,req,res);
+            processImage(width,height,blurValue,req,res);
 
 
           }
@@ -108,15 +114,14 @@ app.listen(PORT, () => {
   console.log(`App is listening on Port ${PORT}`);
 });
 
-
-
-function processImage(width,height,req,res){
+function processImage(width,height,blurValue,req,res){
 
     
     outputFilePath = Date.now() + "output." + format;
-    if (req.file) {
+    if (req.file) {  
       sharp(req.file.path)
         .resize(width, height)
+        .blur(blurValue)
         .grayscale()
         .toFile(outputFilePath, (err, info) => {
           if (err) throw err;

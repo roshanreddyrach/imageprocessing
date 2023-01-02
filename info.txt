@@ -16,7 +16,7 @@ aand here we need to make two changes
     "devStart":"nodemon index.js"
   }
 
-  run dev start in terminal 
+  npm run devStart in terminal 
 
   index.js will be the starting point of the application so, 
   * here we will make a simple express server 

@@ -17,6 +17,7 @@
           <input
             type="file"
             name="file"
+            multiple
             required
             class="form-control"
           />
@@ -39,6 +40,21 @@
           <label for="height">Height</label>
           <input class="form-control" type="number" name="height" id="">
         </div>
+        Choose Operation:
+        <label class="radio-inline"
+          ><input id="grayscale" type="checkbox" name="operation" value="grayscale" />grayscale</label
+        >
+        <label class="radio-inline"
+          ><input id="flip" type="radio" name="operation" value="flip" />flip</label
+        >
+        <label class="radio-inline"
+          ><input id="flop" type="radio" name="operation" value="flop" />flop</label
+        > <br>
+        Blur:
+        <div class="form-group">
+          <label for="value">value</label>
+          <input class="form-control" type="number" name="value" id="">
+        </div><div class="form-group">
         <div class="form-group">
           <button class="btn btn-danger btn-block">Download Image</button>
         </div>
