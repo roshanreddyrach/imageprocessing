@@ -8,7 +8,11 @@ const imageSize = require('image-size');
 const sharp = require('sharp');
 
 var width;
+
 var format;
+
+var outputFilePath;
+
 var height;
 
 const bodyParser = require('body-parser');
@@ -113,6 +117,7 @@ function processImage(width,height,req,res){
     if (req.file) {
       sharp(req.file.path)
         .resize(width, height)
+        .grayscale()
         .toFile(outputFilePath, (err, info) => {
           if (err) throw err;
           res.download(outputFilePath, (err) => {

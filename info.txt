@@ -1,0 +1,26 @@
+initialize npn init -y
+basically this will create an empty package.json file 
+now we need to install the dependencies
+* express which will be our server
+* multer will be the library which will upload the images on the server
+* nodemon which will automatically restart the server 
+
+next will will be using a special library which is image size in oder to get the dimensions of image
+
+package.json file will contain the default information about the project such as name version and description
+aand here we need to make two changes 
+* we need to make a Start script so, we can use this script in Heroku
+* devStart script which we will use inside the development process
+ "scripts": {
+    "start": "node index.js",
+    "devStart":"nodemon index.js"
+  }
+
+  run dev start in terminal 
+
+  index.js will be the starting point of the application so, 
+  * here we will make a simple express server 
+  const express = require("express");
+  * then we will make simple express app
+  const app = express();
+  
